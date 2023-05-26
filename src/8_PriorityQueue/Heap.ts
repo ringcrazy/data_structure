@@ -2,10 +2,12 @@
  * 完全二叉树，将元素顺序排列成树的形状
  * 堆：堆中某个节点的值总是不大于其父节点的值
  * 使用数组来表示一个完全二叉树
- * 
+ * 数组来存储完全二叉树
  * parent(i)= (i-1)/2
  * left child(i) = 2i + 1
  * right child(i) = 2i + 2
+ * 
+ * 最大堆： MaxHeap
  */
 import MyArray from "../1_Array"
 export default class MaxHeap<T> {

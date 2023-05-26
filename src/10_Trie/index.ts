@@ -3,7 +3,7 @@ type Char = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k'
 | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' 
 | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' 
 | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' 
-| 'Y' | 'Z' 
+| 'Y' | 'Z' | '.'
 class Node{
     isWord: boolean // 当前节点是否标识为单词的结尾
     next: BSTMap<Char, Node>
@@ -72,15 +72,27 @@ export default class Trie{
         return true
     }
 
+    // Returns if the word is in the data structure
+    // d..r, .代表一个字符
     search(words: string){
         return this.match(this.root, words, 0)
     }
 
-    // ?
-    match(node: Node, words: string, index: number){
+    // 递归
+    match(node: Node, words: string, index: number): boolean{
         if(index === words.length){
             return node.isWord
         }
+        let c = words.charAt(index) as Char
+        if(c !== '.'){
+            if(node.next.get(c) === null){
+                return false
+            }
+            return this.match(node.next.get(c), words, index+1)
+        }
+        
+        
+
     }
 
 }
